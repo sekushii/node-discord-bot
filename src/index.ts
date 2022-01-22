@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import * as Discord from 'discord.js';
 import 'module-alias/register';
 
