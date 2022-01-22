@@ -23,11 +23,15 @@
     "emitDecoratorMetadata": true,
     "baseUrl": "src",
     "paths": {
-        "~/*": ["./*"]
+        "~/*": ["./*"],
+        "@config/*": ["./config/*"],
+        "@constants/*": ["./constants/*"],
+        "@modules/*": ["./modules/*"]
     }
   },
   "include": [
     "src/**/*",
     "__tests__/**/*"
-  ]
+  ],
+  "exclude": ["node_modules/**", "dist"]
 }
