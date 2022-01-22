@@ -2,23 +2,67 @@
   "name": "node-discord-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/index",
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts",
+    "clean": "rimraf coverage build tmp dist",
+    "build": "yarn clean && tsc -p tsconfig.release.json",
+    "build:watch": "tsc -w -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "test": "jest --coverage --no-cache --passWithNoTests",
+    "test:watch": "jest --watch --no-cache"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/s3kushi/node-discord-bot.git"
+    "url": "git+https://github.com/sekushii/node-discord-bot.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "sekushii",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/s3kushi/node-discord-bot/issues"
+    "url": "https://github.com/sekushii/node-discord-bot/issues"
   },
-  "homepage": "https://github.com/s3kushi/node-discord-bot#readme",
+  "homepage": "https://github.com/sekushii/node-discord-bot#readme",
   "dependencies": {
-    "discord.js": "^12.5.1",
-    "eslint": "^7.17.0"
+    "discord.js": "12.5.3",
+    "dotenv": "^14.2.0",
+    "module-alias": "^2.2.2",
+    "tslib": "~2.3.1"
+  },
+  "devDependencies": {
+    "@types/jest": "~27.0.2",
+    "@types/node": "~16.11.6",
+    "@typescript-eslint/eslint-plugin": "~5.7.0",
+    "@typescript-eslint/parser": "~5.7.0",
+    "eslint": "~8.4.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "~8.3.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "~25.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "~27.4.4",
+    "prettier": "~2.5.1",
+    "rimraf": "~3.0.2",
+    "ts-jest": "~27.1.1",
+    "ts-node-dev": "^1.1.8",
+    "tsutils": "~3.21.0",
+    "typescript": "~4.5.3"
+  },
+  "_moduleAliases": {
+    "~": "dist/"
+  },
+  "lint-staged": {
+    "*.ts, *.tsx": [
+      "eslint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test && lint-staged"
+    }
   }
 }

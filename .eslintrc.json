@@ -1,47 +1,48 @@
 {
-	"extends": "eslint:recommended",
-	"env": {
-		"node": true,
-		"es6": true
-	},
-	"parserOptions": {
-		"ecmaVersion": 2019
-	},
-	"rules": {
-		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
-		"comma-dangle": ["error", "always-multiline"],
-		"comma-spacing": "error",
-		"comma-style": "error",
-		"curly": ["error", "multi-line", "consistent"],
-		"dot-location": ["error", "property"],
-		"handle-callback-err": "off",
-		"indent": ["error", "tab"],
-		"max-nested-callbacks": ["error", { "max": 4 }],
-		"max-statements-per-line": ["error", { "max": 2 }],
-		"no-console": "off",
-		"no-empty-function": "error",
-		"no-floating-decimal": "error",
-		"no-inline-comments": "error",
-		"no-lonely-if": "error",
-		"no-multi-spaces": "error",
-		"no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }],
-		"no-shadow": ["error", { "allow": ["err", "resolve", "reject"] }],
-		"no-trailing-spaces": ["error"],
-		"no-var": "error",
-		"object-curly-spacing": ["error", "always"],
-		"prefer-const": "error",
-		"quotes": ["error", "single"],
-		"semi": ["error", "always"],
-		"space-before-blocks": "error",
-		"space-before-function-paren": ["error", {
-			"anonymous": "never",
-			"named": "never",
-			"asyncArrow": "always"
-		}],
-		"space-in-parens": "error",
-		"space-infix-ops": "error",
-		"space-unary-ops": "error",
-		"spaced-comment": "error",
-		"yoda": "error"
-	}
+  "env": {
+    "browser": false,
+    "es6": true,
+    "node": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "typescript": {}
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "jest", "prettier"],
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:jest/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  }
 }
