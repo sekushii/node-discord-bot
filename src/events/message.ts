@@ -4,8 +4,8 @@ import DiscordEventId from '@constants/discord-event-id';
 import EventHandler from '@interfaces/event-handler';
 import env from '@config/env';
 
-class Message implements EventHandler<DiscordEventId.MESSAGE> {
-  readonly id = DiscordEventId.MESSAGE;
+class Message implements EventHandler<DiscordEventId.message> {
+  readonly id = DiscordEventId.message;
 
   canHandle(message: DiscordMessage): boolean {
     if (!message.content.startsWith(env.MESSAGE_PREFIX)) return false;

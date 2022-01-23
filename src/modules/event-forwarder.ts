@@ -16,15 +16,15 @@ export default class EventForwarder {
   }
 
   listenToMessageEvents() {
-    this.client.on(DiscordEventId.MESSAGE, (message) => {
-      const handler = this.handlerFactory(DiscordEventId.MESSAGE);
+    this.client.on(DiscordEventId.message, (message) => {
+      const handler = this.handlerFactory(DiscordEventId.message);
       handler.handle(message);
     });
   }
 
   handlerFactory(id: DiscordEventId): EventHandler<DiscordEventId> {
     switch (id) {
-      case DiscordEventId.MESSAGE:
+      case DiscordEventId.message:
         return new Events.Message();
 
       default:
