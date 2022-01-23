@@ -23,9 +23,11 @@
     "emitDecoratorMetadata": true,
     "baseUrl": "src",
     "paths": {
-        "~/*": ["./*"],
         "@config/*": ["./config/*"],
         "@constants/*": ["./constants/*"],
+        "@commands": ["./commands"],
+        "@events": ["./events"],
+        "@interfaces/*": ["./interfaces/*"],
         "@modules/*": ["./modules/*"]
     }
   },
