@@ -10,7 +10,7 @@
     "clean": "rimraf dist",
     "dev": "ts-node-dev --respawn --transpile-only --no-notify --ignore-watch node_modules -r dotenv/config -r tsconfig-paths/register src/index.ts",
     "lint": "eslint . --ext .ts,.tsx --fix",
-    "test": "jest --coverage --no-cache --passWithNoTests",
+    "test": "jest --no-cache --passWithNoTests",
     "test:watch": "jest --watch --no-cache"
   },
   "repository": {

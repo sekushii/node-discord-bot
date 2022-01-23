@@ -1,11 +1,18 @@
 import { Message as DiscordMessage } from 'discord.js';
 
-import DiscordEventId from '@constants/discord-event-id';
+import EventType from '@constants/event-type';
 import EventHandler from '@interfaces/event-handler';
+import CommandHandler from '@modules/command-handler';
 import env from '@config/env';
 
-class Message implements EventHandler<DiscordEventId.message> {
-  readonly id = DiscordEventId.message;
+class Message implements EventHandler<EventType.message> {
+  readonly id = EventType.message;
+
+  private commandHandler: CommandHandler;
+
+  constructor(commandHandler) {
+    this.commandHandler = commandHandler;
+  }
 
   canHandle(message: DiscordMessage): boolean {
     if (!message.content.startsWith(env.MESSAGE_PREFIX)) return false;
@@ -20,7 +27,7 @@ class Message implements EventHandler<DiscordEventId.message> {
   async handle(message: DiscordMessage): Promise<void> {
     if (!this.canHandle(message)) return;
 
-    message.channel.send('message received');
+    this.commandHandler.handle(message);
   }
 }
 

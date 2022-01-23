@@ -1,4 +1,4 @@
-const enum DiscordEventId {
+enum EventType {
   ready = 'ready',
   message = 'message',
   error = 'error',
@@ -9,4 +9,4 @@ const enum DiscordEventId {
   guildDelete = 'guildDelete',
 }
 
-export default DiscordEventId;
+export default EventType;

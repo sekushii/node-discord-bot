@@ -1,7 +1,8 @@
 import { Client } from 'discord.js';
 
-import DiscordEventId from '@constants/discord-event-id';
+import EventType from '@constants/event-type';
 import EventHandler from '@interfaces/event-handler';
+import CommandHandler from '@modules/command-handler';
 import * as Events from '@events';
 
 export default class EventForwarder {
@@ -16,16 +17,16 @@ export default class EventForwarder {
   }
 
   listenToMessageEvents() {
-    this.client.on(DiscordEventId.message, (message) => {
-      const handler = this.handlerFactory(DiscordEventId.message);
+    this.client.on(EventType.message, (message) => {
+      const handler = this.handlerFactory(EventType.message);
       handler.handle(message);
     });
   }
 
-  handlerFactory(id: DiscordEventId): EventHandler<DiscordEventId> {
+  handlerFactory(id: EventType): EventHandler<EventType> {
     switch (id) {
-      case DiscordEventId.message:
-        return new Events.Message();
+      case EventType.message:
+        return new Events.Message(new CommandHandler(this.client));
 
       default:
         throw new Error();
