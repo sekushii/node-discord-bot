@@ -1,5 +1,5 @@
 import { createLogger, transports, addColors } from 'winston';
-import { WINSTON_LEVEL_COLORS } from '@constants/logging';
+import { levelColors } from '@constants/logger';
 import loggingConfig from '@config/logger';
 
 const logger = createLogger({
@@ -7,6 +7,6 @@ const logger = createLogger({
   transports: [new transports.Console(loggingConfig.console)],
 });
 
-addColors(WINSTON_LEVEL_COLORS);
+addColors(levelColors);
 
 export default logger;

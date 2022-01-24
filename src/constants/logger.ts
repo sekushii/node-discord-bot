@@ -1,4 +1,4 @@
-export const WINSTON_LOG_LEVELS = {
+export const logLevels = {
   error: 0,
   warn: 1,
   info: 2,
@@ -8,7 +8,7 @@ export const WINSTON_LOG_LEVELS = {
   silly: 6,
 };
 
-export const WINSTON_LEVEL_COLORS = {
+export const levelColors = {
   error: 'red',
   warn: 'yellow',
   info: 'green',

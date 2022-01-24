@@ -1,14 +1,17 @@
 import { Client, Message } from 'discord.js';
+import { inject, injectable } from 'inversify';
+import Types from '@config/inversify-types';
 
 // import logger from '@modules/logger';
 import Command from '@interfaces/command';
 import env from '@config/env';
 import * as Commands from '@commands';
 
+@injectable()
 export default class CommandHandler {
   private client: Client;
 
-  constructor(client: Client) {
+  constructor(@inject(Types.DiscordClient) client: Client) {
     this.client = client;
   }
 
