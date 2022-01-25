@@ -8,7 +8,7 @@ const Types = {
   CommandFactory: Symbol('CommandFactory'),
   // events
   Ready: Symbol('Ready'),
-  Message: Symbol('Message'),
+  MessageCreate: Symbol('MessageCreate'),
   // commands
   Ping: Symbol('Ping'),
   Foo: Symbol('Foo'),

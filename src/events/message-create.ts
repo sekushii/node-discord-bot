@@ -7,7 +7,7 @@ import CommandHandler from '@modules/command-handler';
 import env from '@config/env';
 
 @injectable()
-class Message implements Event {
+class MessageCreate implements Event {
   constructor(
     @inject(Types.CommandHandler)
     private readonly commandHandler: CommandHandler,
@@ -30,4 +30,4 @@ class Message implements Event {
   }
 }
 
-export default Message;
+export default MessageCreate;

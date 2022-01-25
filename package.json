@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "engines": {
+    "node": ">=16.6.0"
+  },
   "scripts": {
     "start": "node -r dotenv/config dist/index",
     "build": "yarn clean && tsc -p tsconfig.release.json && tsc-alias -p tsconfig.release.json",
@@ -25,7 +28,7 @@
   },
   "homepage": "https://github.com/sekushii/node-discord-bot#readme",
   "dependencies": {
-    "discord.js": "12.5.3",
+    "discord.js": "13.5.0",
     "inversify": "^6.0.1",
     "reflect-metadata": "^0.1.13",
     "tslib": "~2.3.1",

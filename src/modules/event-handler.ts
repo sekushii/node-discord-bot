@@ -13,13 +13,14 @@ export default class EventHandler {
   ) {}
 
   init() {
-    this.listenToMessageEvent();
+    this.listenToMessageCreateEvent();
     this.listenToReadyEvent();
   }
 
-  listenToMessageEvent() {
-    this.client.on(EventType.message, (message) => {
-      const handler = this.eventFactory.getInstance(EventType.message);
+  listenToMessageCreateEvent() {
+    this.client.on(EventType.messageCreate, (message) => {
+      const handler = this.eventFactory.getInstance(EventType.messageCreate);
+
       handler.handle(message);
     });
   }
