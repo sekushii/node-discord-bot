@@ -1,8 +1,6 @@
-import CommandId from '@constants/command-id';
 import { Message } from 'discord.js';
 
 interface Command {
-  readonly id: CommandId;
   readonly name: string;
   readonly description: string;
   readonly guildOnly: boolean;

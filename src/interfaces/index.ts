@@ -1,2 +1,2 @@
-export { default as EventHandler } from './event-handler';
+export { default as Event } from './event';
 export { default as Command } from './command';

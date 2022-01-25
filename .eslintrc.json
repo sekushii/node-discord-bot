@@ -51,6 +51,10 @@
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
     "import/namespace": ["error", { "allowComputed": true }],
-    "new-cap": ["error", { "newIsCap": false }]
+    "new-cap": ["error", { "newIsCap": false }],
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": ["error"],
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["error"]
   }
 }

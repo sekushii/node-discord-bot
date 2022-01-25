@@ -1,27 +1,18 @@
-import CommandId from '@constants/command-id';
 import Command from '@interfaces/command';
-import { Client, Message } from 'discord.js';
+import { Message } from 'discord.js';
+import { injectable } from 'inversify';
 
+@injectable()
 class Ping implements Command {
-  id = CommandId.ping;
-
-  client: Client;
-
   name = 'Ping';
 
   description = "Responds with the bot's ping.";
-
-  static patterns = ['ping'];
 
   guildOnly = true;
 
   argsCount = 0;
 
   examples = [''];
-
-  constructor(client: Client) {
-    this.client = client;
-  }
 
   canExecute(): boolean {
     return true;

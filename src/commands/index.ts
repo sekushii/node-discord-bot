@@ -1,2 +1,1 @@
-export { default as Foo } from './foo';
-export { default as Ping } from './ping';
+export * from './general';

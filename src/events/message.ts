@@ -1,18 +1,17 @@
 import { Message as DiscordMessage } from 'discord.js';
+import { inject, injectable } from 'inversify';
 
-import EventType from '@constants/event-type';
-import EventHandler from '@interfaces/event-handler';
+import Types from '@config/inversify-types';
+import Event from '@interfaces/event';
 import CommandHandler from '@modules/command-handler';
 import env from '@config/env';
 
-class Message implements EventHandler<EventType.message> {
-  readonly id = EventType.message;
-
-  private commandHandler: CommandHandler;
-
-  constructor(commandHandler) {
-    this.commandHandler = commandHandler;
-  }
+@injectable()
+class Message implements Event {
+  constructor(
+    @inject(Types.CommandHandler)
+    private readonly commandHandler: CommandHandler,
+  ) {}
 
   canHandle(message: DiscordMessage): boolean {
     if (!message.content.startsWith(env.MESSAGE_PREFIX)) return false;

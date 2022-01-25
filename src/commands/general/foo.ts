@@ -1,27 +1,18 @@
-import CommandId from '@constants/command-id';
 import Command from '@interfaces/command';
-import { Client, Message } from 'discord.js';
+import { Message } from 'discord.js';
+import { injectable } from 'inversify';
 
+@injectable()
 class Foo implements Command {
-  id = CommandId.foo;
-
-  client: Client;
-
   name = 'Foo';
 
   description = "Responds with 'bar'.";
-
-  static patterns = ['foo'];
 
   guildOnly = true;
 
   argsCount = 0;
 
   examples = [''];
-
-  constructor(client: Client) {
-    this.client = client;
-  }
 
   canExecute(): boolean {
     return true;
