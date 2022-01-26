@@ -1,19 +1,18 @@
-import { Client } from 'discord.js';
 import { inject, injectable } from 'inversify';
 import Types from '@config/inversify-types';
 import env from '@config/env';
-import EventHandler from '@modules/event-handler';
+import { DiscordClient, Event, Handler } from '@interfaces';
 
 @injectable()
 class Bot {
   constructor(
-    @inject(Types.DiscordClient) private readonly client: Client,
+    @inject(Types.DiscordClient) private readonly client: DiscordClient,
     @inject(Types.EventHandler)
-    private readonly eventForwarder: EventHandler,
+    private readonly eventHandler: Handler<Event>,
   ) {}
 
   public start() {
-    this.eventForwarder.init();
+    this.eventHandler.handle();
     this.client.login(env.DISCORD_BOT_TOKEN);
   }
 }

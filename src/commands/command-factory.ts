@@ -1,14 +1,13 @@
 import { inject, injectable } from 'inversify';
 import Types from '@config/inversify-types';
-import Command from '@interfaces/command';
 import CommandPatterns from '@constants/command-patterns';
-import { Foo, Ping } from '.';
+import { Command, Factory } from '@interfaces';
 
 @injectable()
-class CommandFactory {
+class CommandFactory implements Factory<Command> {
   constructor(
-    @inject(Types.Ping) private readonly ping: Ping,
-    @inject(Types.Foo) private readonly foo: Foo,
+    @inject(Types.Ping) private readonly ping: Command,
+    @inject(Types.Foo) private readonly foo: Command,
   ) {}
 
   findPattern(patternList: string[], pattern: string): string {

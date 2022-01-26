@@ -1,14 +1,13 @@
 import { inject, injectable } from 'inversify';
 import Types from '@config/inversify-types';
-import Event from '@interfaces/event';
+import { Event, Factory } from '@interfaces';
 import EventType from '@constants/event-type';
-import { MessageCreate, Ready } from '.';
 
 @injectable()
-class EventFactory {
+class EventFactory implements Factory<Event> {
   constructor(
-    @inject(Types.MessageCreate) private readonly messageCreate: MessageCreate,
-    @inject(Types.Ready) private readonly ready: Ready,
+    @inject(Types.MessageCreate) private readonly messageCreate: Event,
+    @inject(Types.Ready) private readonly ready: Event,
   ) {}
 
   getInstance(id: EventType): Event {

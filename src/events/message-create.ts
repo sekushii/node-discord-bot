@@ -1,19 +1,18 @@
 import { Message as DiscordMessage } from 'discord.js';
 import { inject, injectable } from 'inversify';
 
-import Types from '@config/inversify-types';
-import Event from '@interfaces/event';
-import CommandHandler from '@modules/command-handler';
 import env from '@config/env';
+import Types from '@config/inversify-types';
+import { Command, Event, Handler } from '@interfaces';
 
 @injectable()
 class MessageCreate implements Event {
   constructor(
     @inject(Types.CommandHandler)
-    private readonly commandHandler: CommandHandler,
+    private readonly commandHandler: Handler<Command>,
   ) {}
 
-  canHandle(message: DiscordMessage): boolean {
+  canProcess(message: DiscordMessage): boolean {
     if (!message.content.startsWith(env.MESSAGE_PREFIX)) return false;
 
     if (message.author.bot) return false; // ignore bot messages
@@ -23,8 +22,8 @@ class MessageCreate implements Event {
     return true;
   }
 
-  async handle(message: DiscordMessage): Promise<void> {
-    if (!this.canHandle(message)) return;
+  async process(message: DiscordMessage): Promise<void> {
+    if (!this.canProcess(message)) return;
 
     this.commandHandler.handle(message);
   }

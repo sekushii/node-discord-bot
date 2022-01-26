@@ -5,11 +5,11 @@ import Event from '@interfaces/event';
 
 @injectable()
 class Ready implements Event {
-  canHandle(): boolean {
+  canProcess(): boolean {
     return true;
   }
 
-  async handle(): Promise<void> {
+  async process(): Promise<void> {
     logger.info('Ready!');
   }
 }

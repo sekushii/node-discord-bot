@@ -1,34 +1,38 @@
-import { Client } from 'discord.js';
 import { inject, injectable } from 'inversify';
 
 import Types from '@config/inversify-types';
 import EventType from '@constants/event-type';
-import EventFactory from '@events/event-factory';
+import { DiscordClient, Event, Factory, Handler } from '@interfaces';
 
 @injectable()
-export default class EventHandler {
+export default class EventHandler implements Handler<Event> {
   constructor(
-    @inject(Types.DiscordClient) private readonly client: Client,
-    @inject(Types.EventFactory) private readonly eventFactory: EventFactory,
+    @inject(Types.DiscordClient) private readonly client: DiscordClient,
+    @inject(Types.EventFactory) private readonly factory: Factory<Event>,
   ) {}
 
-  init() {
+  getFactory(): Factory<Event> {
+    return this.factory;
+  }
+
+  handle() {
     this.listenToMessageCreateEvent();
     this.listenToReadyEvent();
   }
 
   listenToMessageCreateEvent() {
     this.client.on(EventType.messageCreate, (message) => {
-      const handler = this.eventFactory.getInstance(EventType.messageCreate);
+      const event = this.factory.getInstance(EventType.messageCreate);
 
-      handler.handle(message);
+      event.process(message);
     });
   }
 
   listenToReadyEvent() {
     this.client.once(EventType.ready, () => {
-      const handler = this.eventFactory.getInstance(EventType.ready);
-      handler.handle();
+      const event = this.factory.getInstance(EventType.ready);
+
+      event.process();
     });
   }
 }

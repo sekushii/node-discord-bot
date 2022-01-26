@@ -3,18 +3,22 @@ import { inject, injectable } from 'inversify';
 
 import Types from '@config/inversify-types';
 import env from '@config/env';
-import CommandFactory from '@commands/command-factory';
+import { Factory, Command, Handler } from '@interfaces';
 
 @injectable()
-export default class CommandHandler {
+export default class CommandHandler implements Handler<Command> {
   constructor(
     @inject(Types.CommandFactory)
-    private readonly commandFactory: CommandFactory,
+    private readonly factory: Factory<Command>,
   ) {}
+
+  getFactory(): Factory<Command> {
+    return this.factory;
+  }
 
   handle(message: Message) {
     const parsedContent = this.parseContent(message.cleanContent);
-    const command = this.commandFactory.getInstance(parsedContent[0]);
+    const command = this.factory.getInstance(parsedContent[0]);
 
     if (!command) return;
 

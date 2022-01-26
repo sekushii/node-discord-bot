@@ -1,6 +1,6 @@
 interface Event {
-  canHandle(...args: unknown[]): boolean;
-  handle(...args: unknown[]): void;
+  canProcess(...args: unknown[]): boolean;
+  process(...args: unknown[]): void;
 }
 
 export default Event;
