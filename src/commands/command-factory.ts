@@ -1,7 +1,9 @@
 import { inject, injectable } from 'inversify';
+
 import Types from '@config/inversify-types';
 import CommandPatterns from '@constants/command-patterns';
 import { Command, Factory } from '@interfaces';
+import { logger } from '@modules';
 
 @injectable()
 class CommandFactory implements Factory<Command> {
@@ -25,6 +27,9 @@ class CommandFactory implements Factory<Command> {
         return this.foo;
 
       default:
+        logger.debug(
+          `[CommandFactory][getInstance] No matching command for pattern: ${pattern}`,
+        );
         return null;
     }
   }

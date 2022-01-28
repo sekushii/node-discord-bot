@@ -1,6 +1,8 @@
-import Command from '@interfaces/command';
 import { Message } from 'discord.js';
 import { injectable } from 'inversify';
+
+import { Command } from '@interfaces';
+import { logger } from '@modules';
 
 @injectable()
 class Ping implements Command {
@@ -26,7 +28,9 @@ class Ping implements Command {
         `Latency is ${message.createdTimestamp - Date.now()}ms`,
       );
     } catch (error) {
-      console.error(`Could not execute command. Error: ${error.message}`);
+      logger.error(
+        `[PingCommand] Could not execute command. Error: ${error.message}`,
+      );
     }
   }
 }

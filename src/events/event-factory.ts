@@ -1,7 +1,9 @@
 import { inject, injectable } from 'inversify';
+
 import Types from '@config/inversify-types';
-import { Event, Factory } from '@interfaces';
 import EventType from '@constants/event-type';
+import { Event, Factory } from '@interfaces';
+import { logger } from '@modules';
 
 @injectable()
 class EventFactory implements Factory<Event> {
@@ -19,7 +21,10 @@ class EventFactory implements Factory<Event> {
         return this.ready;
 
       default:
-        throw new Error();
+        logger.debug(
+          `[EventFactory][getInstance] No matching event for id: ${id}`,
+        );
+        return null;
     }
   }
 }

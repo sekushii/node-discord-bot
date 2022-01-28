@@ -1,6 +1,8 @@
-import Command from '@interfaces/command';
 import { Message } from 'discord.js';
 import { injectable } from 'inversify';
+
+import { Command } from '@interfaces';
+import { logger } from '@modules';
 
 @injectable()
 class Foo implements Command {
@@ -24,7 +26,9 @@ class Foo implements Command {
     try {
       await message.channel.send('bar');
     } catch (error) {
-      console.error(`Could not execute command. Error: ${error.message}`);
+      logger.error(
+        `[FooCommand] Could not execute command. Error: ${error.message}`,
+      );
     }
   }
 }

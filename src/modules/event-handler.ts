@@ -3,6 +3,7 @@ import { inject, injectable } from 'inversify';
 import Types from '@config/inversify-types';
 import EventType from '@constants/event-type';
 import { DiscordClient, Event, Factory, Handler } from '@interfaces';
+import { logger } from '@modules';
 
 @injectable()
 export default class EventHandler implements Handler<Event> {
@@ -20,7 +21,13 @@ export default class EventHandler implements Handler<Event> {
     this.listenToReadyEvent();
   }
 
-  listenToMessageCreateEvent() {
+  private logListener(id: EventType) {
+    logger.info(`[EventHandler] Listening to '${id}' events.`);
+  }
+
+  private listenToMessageCreateEvent() {
+    this.logListener(EventType.messageCreate);
+
     this.client.on(EventType.messageCreate, (message) => {
       const event = this.factory.getInstance(EventType.messageCreate);
 
@@ -28,7 +35,9 @@ export default class EventHandler implements Handler<Event> {
     });
   }
 
-  listenToReadyEvent() {
+  private listenToReadyEvent() {
+    this.logListener(EventType.ready);
+
     this.client.once(EventType.ready, () => {
       const event = this.factory.getInstance(EventType.ready);
 

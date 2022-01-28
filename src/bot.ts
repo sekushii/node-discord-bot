@@ -1,4 +1,5 @@
 import { inject, injectable } from 'inversify';
+
 import Types from '@config/inversify-types';
 import env from '@config/env';
 import { DiscordClient, Event, Handler } from '@interfaces';

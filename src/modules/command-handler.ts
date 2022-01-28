@@ -25,7 +25,7 @@ export default class CommandHandler implements Handler<Command> {
     command.execute(message, parsedContent);
   }
 
-  parseContent(content: string): string[] {
+  private parseContent(content: string): string[] {
     return content.trim().slice(env.MESSAGE_PREFIX.length).split(/\s+/g);
   }
 }

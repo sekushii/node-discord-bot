@@ -1,7 +1,7 @@
 import { injectable } from 'inversify';
 
-import logger from '@modules/logger';
-import Event from '@interfaces/event';
+import { Event } from '@interfaces';
+import { logger } from '@modules';
 
 @injectable()
 class Ready implements Event {
@@ -10,7 +10,7 @@ class Ready implements Event {
   }
 
   async process(): Promise<void> {
-    logger.info('Ready!');
+    logger.info('[ReadyEvent] Bot is ready.');
   }
 }
 

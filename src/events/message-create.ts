@@ -12,20 +12,22 @@ class MessageCreate implements Event {
     private readonly commandHandler: Handler<Command>,
   ) {}
 
-  canProcess(message: DiscordMessage): boolean {
-    if (!message.content.startsWith(env.MESSAGE_PREFIX)) return false;
+  canProcess({ cleanContent, author, guild }: DiscordMessage): boolean {
+    if (!cleanContent.startsWith(env.MESSAGE_PREFIX)) return false;
 
-    if (message.author.bot) return false; // ignore bot messages
+    if (author.bot) return false; // ignore bot messages
 
-    if (!message.guild) return false; // ignore pms
+    if (!guild) return false; // ignore pms
 
     return true;
   }
 
   async process(message: DiscordMessage): Promise<void> {
-    if (!this.canProcess(message)) return;
+    const { canProcess, commandHandler } = this;
 
-    this.commandHandler.handle(message);
+    if (canProcess(message)) return;
+
+    commandHandler.handle(message);
   }
 }
 
