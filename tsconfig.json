@@ -32,7 +32,8 @@
         "@events": ["./events"],
         "@interfaces/*": ["./interfaces/*"],
         "@interfaces": ["./interfaces"],
-        "@modules/*": ["./modules/*"]
+        "@modules/*": ["./modules/*"],
+        "@modules": ["./modules"]
     }
   },
   "include": [
