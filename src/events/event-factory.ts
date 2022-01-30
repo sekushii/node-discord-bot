@@ -3,7 +3,7 @@ import { inject, injectable } from 'inversify';
 import Types from '@config/inversify-types';
 import EventType from '@constants/event-type';
 import { Event, Factory } from '@interfaces';
-import { logger } from '@modules';
+import { UnsupportedEventError } from 'errors';
 
 @injectable()
 class EventFactory implements Factory<Event> {
@@ -29,10 +29,7 @@ class EventFactory implements Factory<Event> {
         return this.guildDelete;
 
       default:
-        logger.debug(
-          `[EventFactory][getInstance] No matching event for id: ${id}`,
-        );
-        return null;
+        throw new UnsupportedEventError(id);
     }
   }
 }

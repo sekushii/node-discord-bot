@@ -28,42 +28,32 @@ export default class EventHandler implements Handler<Event> {
   }
 
   private listenToMessageCreateEvent() {
+    const event = this.factory.getInstance(EventType.messageCreate);
     this.logListener(EventType.messageCreate);
 
-    this.client.on(EventType.messageCreate, (message) => {
-      const event = this.factory.getInstance(EventType.messageCreate);
-
-      event.process(message);
-    });
+    this.client.on(EventType.messageCreate, (message) =>
+      event.process(message),
+    );
   }
 
   private listenToReadyEvent() {
+    const event = this.factory.getInstance(EventType.ready);
     this.logListener(EventType.ready);
 
-    this.client.once(EventType.ready, () => {
-      const event = this.factory.getInstance(EventType.ready);
-
-      event.process();
-    });
+    this.client.once(EventType.ready, () => event.process());
   }
 
   private listenToGuildCreateEvent() {
+    const event = this.factory.getInstance(EventType.guildCreate);
     this.logListener(EventType.guildCreate);
 
-    this.client.on(EventType.guildCreate, (guild) => {
-      const event = this.factory.getInstance(EventType.guildCreate);
-
-      event.process(guild);
-    });
+    this.client.on(EventType.guildCreate, (guild) => event.process(guild));
   }
 
   private listenToGuildDeleteEvent() {
+    const event = this.factory.getInstance(EventType.guildDelete);
     this.logListener(EventType.guildDelete);
 
-    this.client.on(EventType.guildDelete, (guild) => {
-      const event = this.factory.getInstance(EventType.guildDelete);
-
-      event.process(guild);
-    });
+    this.client.on(EventType.guildDelete, (guild) => event.process(guild));
   }
 }

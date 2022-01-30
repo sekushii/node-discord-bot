@@ -28,6 +28,8 @@
         "@constants/*": ["./constants/*"],
         "@commands/*": ["./commands/*"],
         "@commands": ["./commands"],
+        "@errors/*": ["./errors/*"],
+        "@errors": ["./errors"],
         "@events/*": ["./events/*"],
         "@events": ["./events"],
         "@interfaces/*": ["./interfaces/*"],
