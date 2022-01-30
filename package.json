@@ -30,6 +30,8 @@
   "dependencies": {
     "discord.js": "13.5.0",
     "inversify": "^6.0.1",
+    "mongoose": "^6.1.8",
+    "redis": "^4.0.2",
     "reflect-metadata": "^0.1.13",
     "tslib": "~2.3.1",
     "winston": "^3.4.0"
@@ -59,12 +61,6 @@
     "tsconfig-paths": "^3.12.0",
     "tsutils": "~3.21.0",
     "typescript": "~4.5.3"
-  },
-  "optionalDependencies": {
-    "bufferutil": "^4.0.6",
-    "erlpack": "github:discord/erlpack",
-    "utf-8-validate": "^5.0.8",
-    "zlib-sync": "^0.1.7"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [

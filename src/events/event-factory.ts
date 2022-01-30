@@ -10,6 +10,8 @@ class EventFactory implements Factory<Event> {
   constructor(
     @inject(Types.MessageCreate) private readonly messageCreate: Event,
     @inject(Types.Ready) private readonly ready: Event,
+    @inject(Types.GuildCreate) private readonly guildCreate: Event,
+    @inject(Types.GuildDelete) private readonly guildDelete: Event,
   ) {}
 
   getInstance(id: EventType): Event {
@@ -19,6 +21,12 @@ class EventFactory implements Factory<Event> {
 
       case EventType.ready:
         return this.ready;
+
+      case EventType.guildCreate:
+        return this.guildCreate;
+
+      case EventType.guildDelete:
+        return this.guildDelete;
 
       default:
         logger.debug(

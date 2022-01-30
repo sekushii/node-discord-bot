@@ -32,8 +32,12 @@
         "@events": ["./events"],
         "@interfaces/*": ["./interfaces/*"],
         "@interfaces": ["./interfaces"],
+        "@models/*": ["./models/*"],
+        "@models": ["./models"],
         "@modules/*": ["./modules/*"],
-        "@modules": ["./modules"]
+        "@modules": ["./modules"],
+        "@repositories/*": ["./repositories/*"],
+        "@repositories": ["./repositories"],
     }
   },
   "include": [

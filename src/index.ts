@@ -1,6 +1,10 @@
 import 'reflect-metadata';
 import Types from '@config/inversify-types';
 import Bot from 'bot';
-import container from './inversify.config';
+import container, { asyncDependencies } from './inversify.config';
 
-container.get<Bot>(Types.Bot).start();
+(async () => {
+  await container.loadAsync(asyncDependencies);
+
+  container.get<Bot>(Types.Bot).start();
+})();

@@ -23,11 +23,9 @@ class MessageCreate implements Event {
   }
 
   async process(message: DiscordMessage): Promise<void> {
-    const { canProcess, commandHandler } = this;
+    if (!this.canProcess(message)) return;
 
-    if (canProcess(message)) return;
-
-    commandHandler.handle(message);
+    this.commandHandler.handle(message);
   }
 }
 
