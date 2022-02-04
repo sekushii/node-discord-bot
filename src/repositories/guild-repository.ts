@@ -5,6 +5,7 @@ import Types from '@config/inversify-types';
 import { Guild } from '@models';
 import DbClient from './db-client';
 import GenericRepository from './generic-repository';
+import CacheClient from './cache-client';
 
 export interface GuildModel extends Guild, Document {
   id: string;
@@ -15,9 +16,13 @@ class GuildRepository
   extends GenericRepository<Guild, GuildModel>
   implements GuildRepositoryInterface
 {
-  public constructor(@inject(Types.DbClient) dbClient: DbClient) {
+  public constructor(
+    @inject(Types.DbClient) dbClient: DbClient,
+    @inject(Types.CacheClient) cacheClient: CacheClient,
+  ) {
     super(
       dbClient,
+      cacheClient,
       'Guild',
       {
         _id: String,

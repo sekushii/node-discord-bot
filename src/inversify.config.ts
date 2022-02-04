@@ -8,6 +8,7 @@ import CommandHandler from '@modules/command-handler';
 import { Foo, Ping } from '@commands';
 import EventFactory from '@events/event-factory';
 import { DbClient, getDatabaseClient, GuildRepository } from '@repositories';
+import CacheClient, { getCacheClient } from '@repositories/cache-client';
 import { env } from './config';
 
 const { Client, Intents } = require('discord.js');
@@ -18,9 +19,14 @@ const discordClient = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
-export const asyncDependencies = new AsyncContainerModule(async (bind) => {
+export const dbDependency = new AsyncContainerModule(async (bind) => {
   const dbClient = await getDatabaseClient(env.DB_HOST, env.DB_NAME);
   bind<DbClient>(Types.DbClient).toConstantValue(dbClient);
+});
+
+export const cacheDependency = new AsyncContainerModule(async (bind) => {
+  const cacheClient = await getCacheClient(env.CACHE_HOST);
+  bind<CacheClient>(Types.CacheClient).toConstantValue(cacheClient);
 });
 
 container

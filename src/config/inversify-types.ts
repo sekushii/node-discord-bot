@@ -2,6 +2,7 @@ const Types = {
   Bot: Symbol('Bot'),
   DiscordClient: Symbol('DiscordClient'),
   DbClient: Symbol('DbClient'),
+  CacheClient: Symbol('CacheClient'),
 
   EventHandler: Symbol('EventHandler'),
   EventFactory: Symbol('EventFactory'),
