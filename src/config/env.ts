@@ -5,6 +5,7 @@ const {
   DB_HOST,
   DB_NAME,
   DB_CONN_TIMEOUT,
+  DB_POOL_SIZE,
   CACHE_HOST,
   CACHE_DEFAULT_TTL,
 } = process.env;
@@ -15,6 +16,7 @@ export default Object.freeze({
   DB_HOST,
   DB_NAME,
   DB_CONN_TIMEOUT,
+  DB_POOL_SIZE,
   MESSAGE_PREFIX,
   CACHE_HOST,
   CACHE_DEFAULT_TTL,

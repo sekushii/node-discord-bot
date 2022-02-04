@@ -15,6 +15,7 @@ export const getDatabaseClient = async (
   try {
     const client = await mongoose.connect(connString, {
       serverSelectionTimeoutMS: Number(env.DB_CONN_TIMEOUT),
+      maxPoolSize: Number(env.DB_POOL_SIZE) || 10,
     });
 
     logger.info('[DbClient] Connected to database.');
