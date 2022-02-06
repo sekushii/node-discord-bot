@@ -3,18 +3,26 @@ import { injectable } from 'inversify';
 
 import { Command } from '@interfaces';
 import { logger } from '@modules';
+import { commandData } from 'decorators';
 
+@commandData({
+  decoratedName: 'Ping',
+  decoratedDescription: "Responds with the bot's ping.",
+  decoratedGuildOnly: true,
+  decoratedArgsCount: 0,
+  decoratedExamples: [],
+})
 @injectable()
 class Ping implements Command {
-  name = 'Ping';
+  name: string;
 
-  description = "Responds with the bot's ping.";
+  description: string;
 
-  guildOnly = true;
+  guildOnly: boolean;
 
-  argsCount = 0;
+  argsCount: number;
 
-  examples = [''];
+  examples: string[];
 
   canExecute(): boolean {
     return true;

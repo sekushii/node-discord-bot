@@ -3,18 +3,26 @@ import { injectable } from 'inversify';
 
 import { Command } from '@interfaces';
 import { logger } from '@modules';
+import { commandData } from 'decorators';
 
+@commandData({
+  decoratedName: 'Foo',
+  decoratedDescription: "Responds with 'bar'.",
+  decoratedGuildOnly: true,
+  decoratedArgsCount: 0,
+  decoratedExamples: [],
+})
 @injectable()
 class Foo implements Command {
-  name = 'Foo';
+  name: string;
 
-  description = "Responds with 'bar'.";
+  description: string;
 
-  guildOnly = true;
+  guildOnly: boolean;
 
-  argsCount = 0;
+  argsCount: number;
 
-  examples = [''];
+  examples: string[];
 
   canExecute(): boolean {
     return true;
