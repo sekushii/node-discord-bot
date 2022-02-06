@@ -1,12 +1,13 @@
 import { AsyncContainerModule, Container } from 'inversify';
 import Bot from 'bot';
 import Types from '@config/inversify-types';
-import EventHandler from '@modules/event-handler';
-import { GuildCreate, GuildDelete, MessageCreate, Ready } from '@events';
-import CommandFactory from '@commands/command-factory';
 import CommandHandler from '@modules/command-handler';
-import { Foo, Ping } from '@commands';
+import CommandFactory from '@commands/command-factory';
+import EventHandler from '@modules/event-handler';
 import EventFactory from '@events/event-factory';
+import { BooruClient } from '@clients';
+import { Foo, Ping, RandomImageByTag } from '@commands';
+import { GuildCreate, GuildDelete, MessageCreate, Ready } from '@events';
 import { DbClient, getDatabaseClient, GuildRepository } from '@repositories';
 import CacheClient, { getCacheClient } from '@repositories/cache-client';
 import { env } from './config';
@@ -78,5 +79,14 @@ container
 // commands
 container.bind<Ping>(Types.Ping).to(Ping).inSingletonScope();
 container.bind<Foo>(Types.Foo).to(Foo).inSingletonScope();
+container
+  .bind<RandomImageByTag>(Types.RandomImageByTag)
+  .to(RandomImageByTag)
+  .inSingletonScope();
+
+// http clients
+container
+  .bind<typeof BooruClient>(Types.BooruClient)
+  .toConstantValue(BooruClient);
 
 export default container;

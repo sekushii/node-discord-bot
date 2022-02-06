@@ -10,6 +10,7 @@ class CommandFactory implements Factory<Command> {
   constructor(
     @inject(Types.Ping) private readonly ping: Command,
     @inject(Types.Foo) private readonly foo: Command,
+    @inject(Types.RandomImageByTag) private readonly randomImageByTag: Command,
   ) {}
 
   findPattern(patternList: string[], pattern: string): string {
@@ -25,6 +26,9 @@ class CommandFactory implements Factory<Command> {
 
       case findPattern(CommandPatterns.foo, pattern):
         return this.foo;
+
+      case findPattern(CommandPatterns.randomImageByTag, pattern):
+        return this.randomImageByTag;
 
       default:
         logger.debug(

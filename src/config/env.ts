@@ -8,6 +8,7 @@ const {
   DB_POOL_SIZE,
   CACHE_HOST,
   CACHE_DEFAULT_TTL,
+  BOORU_URL,
 } = process.env;
 
 export default Object.freeze({
@@ -20,4 +21,5 @@ export default Object.freeze({
   MESSAGE_PREFIX,
   CACHE_HOST,
   CACHE_DEFAULT_TTL,
+  BOORU_URL,
 });

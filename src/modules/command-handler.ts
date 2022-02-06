@@ -22,10 +22,14 @@ export default class CommandHandler implements Handler<Command> {
 
     if (!command) return;
 
-    command.execute(message, parsedContent);
+    command.execute(message, parsedContent.slice(1));
   }
 
   private parseContent(content: string): string[] {
-    return content.trim().slice(env.MESSAGE_PREFIX.length).split(/\s+/g);
+    return content
+      .trim()
+      .slice(env.MESSAGE_PREFIX.length)
+      .split(/\s+/g)
+      .map((c) => c.trim());
   }
 }

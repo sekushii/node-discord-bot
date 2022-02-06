@@ -10,9 +10,9 @@ const commandData = function <T extends { new (...args: any[]): {} }>({
   decoratedGuildOnly: boolean;
   decoratedArgsCount: number;
   decoratedExamples: string[];
-}) {
-  return (constructor: T) =>
-    class extends constructor {
+}): any {
+  return (Target: T) =>
+    class extends Target {
       name = decoratedName;
 
       description = decoratedDescription;
@@ -22,10 +22,6 @@ const commandData = function <T extends { new (...args: any[]): {} }>({
       argsCount = decoratedArgsCount;
 
       examples = decoratedExamples;
-
-      canExecute;
-
-      execute;
     };
 };
 

@@ -8,6 +8,8 @@ const Types = {
   EventFactory: Symbol('EventFactory'),
   CommandHandler: Symbol('CommandHandler'),
   CommandFactory: Symbol('CommandFactory'),
+  // http clients
+  BooruClient: Symbol('BooruClient'),
   // repos
   GuildRepository: Symbol('GuildRepository'),
   // events
@@ -18,6 +20,7 @@ const Types = {
   // commands
   Ping: Symbol('Ping'),
   Foo: Symbol('Foo'),
+  RandomImageByTag: Symbol('RandomImageByTag'),
 };
 
 export default Types;
